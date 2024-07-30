@@ -1,0 +1,5 @@
+<script lang="ts">
+    import { goto } from '$app/navigation';
+</script>
+
+<button onclick={() => {goto('/login')}} class="text-3xl font-bold underline">Hello world!</button>
