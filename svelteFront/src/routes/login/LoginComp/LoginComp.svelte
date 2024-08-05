@@ -2,6 +2,8 @@
     import { toastSender } from "$lib/toast";
     import axios from "axios";
     import { onMount } from "svelte";
+    import { UserState } from "$lib/userStore.svelte";
+    import { goto } from "$app/navigation";
 
     export let buttonState: "register" | "login";
     onMount(() => {
@@ -20,6 +22,11 @@
             axios.post('http://localhost:3000/user/findUser' , {email : email, password : password}).then((res) => {
                 toastSender("success" , "Form başarıyla gönderildi.");
                 console.log(res)
+                UserState.changeName(res.data.name);
+                UserState.changeEmail(res.data.email);
+                UserState.changeProfilePicture(res.data.profilePicture);
+                UserState.changeToken(res.data.token);
+                goto('/');
             }).catch((e) => {
                 console.log(e);
                 toastSender('error' , "BAD REQ")

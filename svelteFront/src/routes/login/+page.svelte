@@ -6,17 +6,17 @@
 
     let buttonState: "register" | "login" = "login";
 
-    let loading = false;
+    let loading = true;
 
     onMount(() => {
-        loading = true;
+        loading = false;
     });
 </script>
 
-{#if loading}
-    <div class=" w-full h-screen flex justify-center items-center">
+{#if !loading}
+    <div class=" w-full flex-1 flex justify-center items-center flex-col">
         <div
-            class="lg:w-1/3 lg:h-1/2 w-full h-5/6 flex flex-col gap-y-4 p-2 shadow-sm"
+            class="lg:w-1/3 lg:flex-[0.5] w-full flex-[0.8] flex flex-col gap-y-4 p-2 shadow-sm"
         >
             <div
                 class=" h-16 w-full flex relative overflow-hidden placeBackground"

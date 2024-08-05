@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import express from 'express'
 import { Request , Response } from 'express';
+import  jwt  from 'jsonwebtoken';
 
 const userRouter = express.Router();
 
@@ -21,9 +22,9 @@ userRouter.post('/findUser' , async (req : Request, res : Response) => {
 
         if(!user)
             return ;
-
-        console.log(user[0].email);
-        res.status(200).send({email : user[0].email , profilePicture : user[0].profilePicture});
+        const token = jwt.sign({name : user[0].name , email : user[0].email , profilePicture : user[0].profilePicture} , 'privateKey');
+        console.log(token);
+        res.status(200).send({name : user[0].name , email : user[0].email , profilePicture : user[0].profilePicture , token : token});
     } catch(e) {
         res.status(404).send({message : e})
     }

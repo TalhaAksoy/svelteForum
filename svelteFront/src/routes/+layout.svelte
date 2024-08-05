@@ -5,11 +5,13 @@
     import "../app.css";
     import "tailwindcss/tailwind.css";
     import ThemeChanger from "../components/themeChanger/ThemeChanger.svelte";
+    import Navbar from "../components/navbar/Navbar.svelte";
 </script>
 
 <Toaster />
 
-<div class="w-full min-h-screen relative" data-theme={ThemeState.theme}>
+<div class="w-full h-screen relative flex flex-col" data-theme={ThemeState.theme}>
     <ThemeChanger />
+    <Navbar/>
     <slot />
 </div>
